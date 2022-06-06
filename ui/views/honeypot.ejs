@@ -1,0 +1,55 @@
+<%- include("partials/header") %>
+<div class="container center">
+  <h2>Honeypot</h2>
+
+  <div class="center">
+    <a href="admin.pif" download="admin.pif">
+      <button type="button" class="btn btn-light">Download HoneyPot</button>
+    </a>
+    <div class="display">
+      <div class="card">
+        <h5 class="card-header"></h5>
+        <div class="card-body">
+          <!-- <h5 class="card-title">Some title...</h5>
+          <p class="card-text">
+            All IP details .... jsndkjbksdjfbvjlsbdlfkvjbjadhfbv
+          </p> -->
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">TimeStamp</th>
+                <th scope="col">IP</th>
+                <th scope="col">MAC</th>
+                <th scope="col"><b>Pid</b> </th>
+                <th scope="col"><b>Process</b> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(i in data) { %>
+              <tr>
+                <td><%= i %></td>
+                <td><%= data[i]["IP"] %></td>
+                <td><%= data[i]["MAC"] %></td>
+                <td>
+                <% for(j in data[i]["pid_dict"]) { %>
+                  <%= JSON.stringify(data[i]["pid_dict"][j]["pid"]) %><br>
+                <% } %>
+                </td>
+                <td>
+                  <% for(j in data[i]["pid_dict"]) { %>
+                    <%= JSON.stringify(data[i]["pid_dict"][j]["name"]) %><br>
+                  <% } %>
+                  </td>
+                <!-- <td><><%= JSON.stringify(data[i]["pid_dict"]) %></td> -->
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>

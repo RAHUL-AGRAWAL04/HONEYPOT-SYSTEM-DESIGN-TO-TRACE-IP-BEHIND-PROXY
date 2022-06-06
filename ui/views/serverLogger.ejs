@@ -1,0 +1,39 @@
+<%- include("partials/header") %>
+<div class="container center">
+  <h2>serverLogger</h2>
+
+  <div class="display">
+    <div class="card">
+      <h5 class="card-header">IP Details</h5>
+      <div class="card-body">
+        <!-- <h5 class="card-title">Some title...</h5>
+        <p class="card-text">
+          All IP details .... jsndkjbksdjfbvjlsbdlfkvjbjadhfbv
+        </p> -->
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">TimeStamp</th>
+              <th scope="col">IP</th>
+              <th scope="col">Port No.</th>
+              <th scope="col">Request Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i in data) { %>
+            <tr>
+              <td><%= i %></td>
+              <td><%= data[i]["IP"] %></td>
+              <td><%= data[i]["PORT"] %></td>
+              <td><%= data[i]["REQUEST"] %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>

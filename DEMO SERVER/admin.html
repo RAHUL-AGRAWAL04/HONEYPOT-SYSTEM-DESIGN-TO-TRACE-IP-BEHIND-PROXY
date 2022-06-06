@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    
+    <style>
+        .btns {
+            display: flex;
+            direction: row;
+            justify-content: space-between;
+        }
+    </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    
+    <script type="text/javascript">
+        // const data = new URLSearchParams();
+        // for (const pair of new FormData(document.getElementById("form"))) {
+        //     data.append(pair[0], pair[1]);
+        // }
+    
+        async function add() {
+    
+            console.log(document.getElementById("userid").value);
+            console.log(document.getElementById("passwordinput").value);
+    
+            const userid = document.getElementById("userid").value
+            const pw = document.getElementById("passwordinput").value
+          
+    
+            var dict = {"uname":userid,"passwd":pw, "action":"add"}
+    
+            
+    
+            // const resultDiv = $("#resultDivContainer");
+    
+            // // window.alert(resultDiv);
+            //  window.alert( $("#userid").val())
+    
+            $.ajax({
+                url: "http://192.168.43.98:8000/admin/add",
+                type: "POST",
+                data: {uname: $("#userid").val(), passwd: $("#passwordinput").val()},
+                dataType: "json",
+                success: function (result) {
+                    switch (result) {
+                        case true:
+                            processResponse(result);
+                            break;
+                        default:
+                            resultDiv.html(result);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status);
+                alert(thrownError);
+                }
+            });
+
+
+            // const response = await fetch("http://192.168.43.59:8000/admin/add", {
+            // method: 'POST',
+            // headers: {
+            // 'Accept': 'application/json',
+            // 'Content-Type': 'application/json'
+            // },
+            // body: JSON.stringify(dict)
+            // });
+
+            // // response.json().then(data => {
+            // // console.log(data);
+            // // });
+
+            // let xhr = new XMLHttpRequest();
+            // xhr.open("POST", "http://192.168.43.59:8000/admin/add");
+
+            // xhr.setRequestHeader("Accept", "application/json");
+            // xhr.setRequestHeader("Content-Type", "application/json");
+
+            // //xhr.onload = () => console.log(xhr.responseText);
+
+            // let data = `{
+            //   "Id": 78912,
+            //   "Customer": "Jason Sweet",
+            // }`;
+
+            // xhr.send(data);
+            };
+        
+        
+    </script>
+    
+</head>
+<body>
+
+    <div class="container">
+<h1>Welcome Admin</h1>
+    <br>
+<form>
+    <div class="form-group">
+      <label for="emailinput">User ID</label>
+      <input type="text" class="form-control" id="userid" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="passwordinput">Password</label>
+      <input type="password" class="form-control" id="passwordinput" placeholder="Password">
+    </div>
+   <div class="btns">
+    <button type="submit" class="btn btn-primary"  onclick="add()">Add User</button>
+    <button type="submit" class="btn btn-danger"  onclick="remove()">Remove User</button>
+</div>
+  </form>
+</div>
+
+
+
+
+
+</body>
+</html>

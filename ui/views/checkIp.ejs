@@ -1,0 +1,129 @@
+<%- include("partials/header") %>
+<div class="center">
+  <h2>Check IP Address</h2>
+  <form action="/searchIp" method="POST">
+    <input type="text" name="ip" class="input" id="ip" />
+    <button type="submit" class="btnn">CHECK</button>
+  </form>
+</div>
+
+<div class="display">
+  <div class="card">
+    <h5 class="card-header">IP Details</h5>
+    <div class="card-body">
+      <!-- <h5 class="card-title">Some title...</h5> -->
+      <!-- <p class="card-text">
+        All IP details .... jsndkjbksdjfbvjlsbdlfkvjbjadhfbv
+      </p> -->
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      <table class="table">
+        <% if(locals.is_ip) { %>
+          <%= console.log(ip_details) %>
+        <tbody>
+          <tr>
+            <th scope="row">IP address:</th>
+            <td><%= ip_details.ip %></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Country:</th>
+            <td><%= ip_details.country %></td>
+          </tr>
+          <tr>
+            <th scope="row">Region:</th>
+            <td><%= ip_details.region %></td>
+          </tr>
+          <tr>
+            <th scope="row">City:</th>
+            <td><%= ip_details.city %></td>
+          </tr>
+          <tr>
+            <th scope="row">Zip Code:</th>
+            <td><%= ip_details.zip_code %></td>
+          </tr>
+          <tr>
+            <th scope="row">Latitude:</th>
+            <td><%= ip_details.latitude %></td>
+          </tr>
+          <tr>
+            <th scope="row">Longitude:</th>
+            <td><%= ip_details.longitude %></td>
+          </tr>
+          <tr>
+            <th scope="row">ISP:</th>
+            <td><%= ip_details.isp %></td>
+          </tr>
+          <tr>
+            <th scope="row">Organization:</th>
+            <td><%= ip_details.organization %></td>
+          </tr>
+          <tr>
+            <th scope="row">ASN</th>
+            <td><%= ip_details.asn %></td>
+          </tr>
+
+        </tbody>
+        <% } %>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <h5 class="card-header">VPN Details</h5>
+    <div class="card-body">
+      <% if(locals.is_ip) { %>
+        <% if(locals.proxy_details) { %>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">IP address:</th>
+                <td><%= proxy_details.ip %></td>
+              </tr>
+              <tr>
+                <th scope="row">is_proxy:</th>
+                <td><%= proxy_details.is_proxy %></td>
+              </tr>
+              <tr>
+                <th scope="row">Proxy Type:</th>
+                <td><%= proxy_details.proxy_type %></td>
+              </tr>
+    
+              <tr>
+                <th scope="row">Country:</th>
+                <td><%= proxy_details.country %></td>
+              </tr>
+              <tr>
+                <th scope="row">Region:</th>
+                <td><%= proxy_details.region %></td>
+              </tr>
+              <tr>
+                <th scope="row">City:</th>
+                <td><%= proxy_details.city %></td>
+              </tr>
+              
+              <tr>
+                <th scope="row">ISP:</th>
+                <td><%= proxy_details.isp %></td>
+              </tr>
+              
+              <tr>
+                <th scope="row">ASN</th>
+                <td><%= proxy_details.asn %></td>
+              </tr>
+    
+              
+            </tbody>
+          </table>
+        <% } else { %>
+        <p>No proxy details available</p>
+        <% }%>
+      <% } %> 
+      <!-- <h5 class="card-title">Some title ...</h5>
+      <p class="card-text">
+        All VPN details ... jsndkjbksdjfbvjlsbdlfkvjbjadhfbv
+      </p> -->
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer") %>
